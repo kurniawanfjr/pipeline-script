@@ -5,7 +5,7 @@ import java.util.Date
 def creation_date = "2019-10-12"
 
 pipeline{
-    agent { label parentNode }
+    agent { label 'master' }
 
     stages {
         stage('Verify Date') {
