@@ -1,8 +1,14 @@
 #!/usr/bin/env groovy
+import java.text.SimpleDateFormat
+
+static def getDate2WeeksAgo() {
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    Date date2WeeksAgo = new Date().minus(14);
+    sdf.format(date2WeeksAgo)
+}
 
 def validateCreatedFileWithin2Weeks() {
-    Date date = new Date().format("yyyy-mm-dd") as Date
-    String date2WeeksAgo = date - 14
+    String date2WeeksAgo = getDate2WeeksAgo()
     println 'Date 2 Weeks ago: ' + date2WeeksAgo
     sh '''
         if [[ $(gdrive list -m 100 -q "createdTime < '${date2WeeksAgo}'" | awk '/MB/{print}') ]]
