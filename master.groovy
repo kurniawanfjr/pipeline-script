@@ -1,6 +1,4 @@
-import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.Date
 
 def creation_date = "2019-10-12"
 
@@ -11,6 +9,10 @@ pipeline{
         stage('Verify Date') {
             steps {
                 script {
+                    def validateArtifacts = load "validateArtifacts.groovy"
+                    validateArtifacts.removeFileMoreThan2WeeksAgo()
+
+
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd")
                     Date date2WeeksAgo = new Date() - 14
                     Date fileDate = sdf.parse(creation_date)
