@@ -1,7 +1,8 @@
 #!/usr/bin/env groovy
 
 def validateCreatedFileWithin2Weeks() {
-    String date2WeeksAgo = new Date().minus(14).format("yyyy-mm-dd")
+    Date date = new Date().format("yyyy-mm-dd") as Date
+    String date2WeeksAgo = date - 14
     println 'Date 2 Weeks ago: ' + date2WeeksAgo
     sh '''
         if [[ $(gdrive list -m 100 -q "createdTime < '${date2WeeksAgo}'" | awk '/MB/{print}') ]]
