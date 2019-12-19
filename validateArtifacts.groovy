@@ -12,3 +12,5 @@ def validateCreatedFileWithin2Weeks() {
             echo 'There's nothing files above 2 weeks ago'
     '''
 }
+
+return this
