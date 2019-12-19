@@ -10,7 +10,7 @@ pipeline{
             steps {
                 script {
                     def validateArtifact = load "validateArtifacts.groovy"
-                    validateArtifact.removeFileMoreThan2WeeksAgo()
+                    validateArtifact.validateCreatedFileWithin2Weeks()
 
 
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd")
