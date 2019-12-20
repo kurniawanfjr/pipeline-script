@@ -2,8 +2,8 @@
 import java.text.SimpleDateFormat
 
 static def getDate2WeeksAgo() {
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    Date date2WeeksAgo = new Date().minus(14);
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd")
+    Date date2WeeksAgo = new Date().minus(14)
     sdf.format(date2WeeksAgo)
 }
 
@@ -17,6 +17,7 @@ def validateCreatedFileWithin2Weeks() {
             gdrive delete $(gdrive list -m 100 -q "createdTime < ''${date2WeeksAgo}'" | awk '/MB/{print $1}')
         else
             echo "There nothing files above 2 weeks ago"
+        fi    
     '''
 }
 
